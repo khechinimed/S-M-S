@@ -108,7 +108,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <li class="nav-item">
             <router-link to="/class" class="nav-link">
-              <i class="nav-icon fas fa-school blue"></i>
+              <i class="nav-icon fas fa-book blue"></i>
               <p>
                 Class
               </p>
