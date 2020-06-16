@@ -2019,9 +2019,10 @@ __webpack_require__.r(__webpack_exports__);
     return {
       editmode: false,
       classes: {},
-      profs: {},
+      profs: [],
       form: new Form({
         id: '',
+        user_id: '',
         className: ''
       })
     };
@@ -2032,7 +2033,11 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("api/class").then(function (_ref) {
         var data = _ref.data;
-        return _this.classes = data;
+        return _this.classes = data.classes;
+      });
+      axios.get("api/class").then(function (_ref2) {
+        var data = _ref2.data;
+        return _this.profs = data.profs;
       });
     },
     newModal: function newModal() {
@@ -2046,13 +2051,83 @@ __webpack_require__.r(__webpack_exports__);
       this.form.fill(classes);
       this.editmode = true;
     },
-    createClass: function createClass() {},
-    updateClass: function updateClass() {},
-    deleteClass: function deleteClass() {},
-    editClass: function editClass() {}
+    createClass: function createClass() {
+      var _this2 = this;
+
+      this.$Progress.start();
+      this.form.post('api/class').then(function () {
+        Fire.$emit('AfterCreate');
+        $('#addNew').modal('hide');
+        Toast.fire({
+          icon: 'success',
+          title: 'Module Ajouté avec succès'
+        });
+
+        _this2.$Progress.finish();
+      })["catch"](function () {
+        Toast.fire({
+          icon: 'error',
+          title: 'Module non-ajouté'
+        });
+
+        _this2.form.reset();
+      });
+    },
+    updateClass: function updateClass() {
+      var _this3 = this;
+
+      this.$Progress.start();
+      this.form.put('api/class/' + this.form.id).then(function () {
+        //success
+        $('#addNew').modal('hide');
+        Swal.fire('Updated!', 'Information has been updated.', 'success');
+
+        _this3.$Progress.finish();
+
+        Fire.$emit('AfterCreate');
+      })["catch"](function () {
+        _this3.$Progress.fail();
+      });
+    },
+    deleteClass: function deleteClass(id) {
+      var _this4 = this;
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        //send ajax request to the server
+        if (result.value) {
+          _this4.form["delete"]('api/class/' + id).then(function () {
+            Swal.fire('Deleted!', 'The User has been deleted.', 'success');
+            Fire.$emit('AfterCreate');
+          })["catch"](function () {
+            Swal.fire("Failed!", "There was something wronge.", "warning");
+          });
+        }
+      });
+    }
   },
   created: function created() {
-    this.loadClasses();
+    var _this5 = this;
+
+    //Searching listening
+    Fire.$on('searching', function () {
+      var query = _this5.$parent.search;
+      axios.get('api/findClass?q=' + query).then(function (data) {
+        _this5.classes = data.data;
+      })["catch"](function () {});
+    });
+    this.loadClasses(); // //setInterval(() => this.loadUsers(), 3000);
+
+    Fire.$on('AfterCreate', function () {
+      _this5.loadClasses();
+    });
   },
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -65851,8 +65926,8 @@ var render = function() {
                   on: { click: _vm.newModal }
                 },
                 [
-                  _vm._v("Ajouter un module"),
-                  _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                  _vm._v("Ajouter un module "),
+                  _c("i", { staticClass: "fas fa-plus-square fa-fw" })
                 ]
               )
             ])
@@ -65949,7 +66024,7 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
-                  [_vm._v("Add New")]
+                  [_vm._v("Ajouter Modules")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -65966,7 +66041,7 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
-                  [_vm._v("Update User's Info")]
+                  [_vm._v("Modifier Modules")]
                 ),
                 _vm._v(" "),
                 _vm._m(1)
@@ -66003,7 +66078,7 @@ var render = function() {
                           },
                           attrs: {
                             type: "text",
-                            name: "name",
+                            name: "className",
                             placeholder: "Nom du module"
                           },
                           domProps: { value: _vm.form.className },
@@ -66057,7 +66132,7 @@ var render = function() {
                             class: {
                               "is-valid": _vm.form.errors.has("user_id")
                             },
-                            attrs: { name: "type", id: "type" },
+                            attrs: { name: "user_id", id: "type" },
                             on: {
                               change: function($event) {
                                 var $$selectedVal = Array.prototype.filter
@@ -66078,23 +66153,20 @@ var render = function() {
                               }
                             }
                           },
-                          [
-                            _c("option", { attrs: { value: "" } }, [
-                              _vm._v("Select User Role")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "admin" } }, [
-                              _vm._v("Admin")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "teacher" } }, [
-                              _vm._v("Prof")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "student" } }, [
-                              _vm._v("Etudiant")
-                            ])
-                          ]
+                          _vm._l(_vm.profs, function(prof) {
+                            return _c(
+                              "option",
+                              { key: prof.id, domProps: { value: prof.id } },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(prof.name) +
+                                    "\n                        "
+                                )
+                              ]
+                            )
+                          }),
+                          0
                         ),
                         _vm._v(" "),
                         _c("has-error", {
@@ -66167,9 +66239,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("ID")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Name")]),
+        _c("th", [_vm._v("Module")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Created At")]),
+        _c("th", [_vm._v("Date d'ajout")]),
         _vm._v(" "),
         _c("th", [_vm._v("Actions")])
       ])
