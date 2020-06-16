@@ -7,7 +7,7 @@
                     <h3 class="card-title">Modules</h3>
 
                     <div class="card-tools">
-                    <button class="btn btn-success" v-show="$gate.isAdmin()" @click="newModal">Ajouter un module<i class="fas fa-user-plus fa-fw"></i></button>
+                    <button class="btn btn-success" v-show="$gate.isAdmin()" @click="newModal">Ajouter un module <i class="fas fa-plus-square fa-fw"></i></button>
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -16,8 +16,8 @@
                     <thead>
                         <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Created At</th>
+                        <th>Module</th>
+                        <th>Date d'ajout</th>
                         <th>Actions</th>
                         </tr>
                     </thead>
@@ -49,8 +49,8 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addNewLabel" v-show="!editmode">Add New</h5>
-                <h5 class="modal-title" id="addNewLabel" v-show="editmode">Update User's Info</h5>
+                <h5 class="modal-title" id="addNewLabel" v-show="!editmode">Ajouter Modules</h5>
+                <h5 class="modal-title" id="addNewLabel" v-show="editmode">Modifier Modules</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -58,18 +58,18 @@
             <form @submit.prevent="editmode ? updateClass() : createClass()">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input v-model="form.className" type="text" name="name" placeholder="Nom du module"
+                        <input v-model="form.className" type="text" name="className" placeholder="Nom du module"
                             class="form-control" :class="{ 'is-invalid': form.errors.has('className') }">
                         <has-error :form="form" field="className"></has-error>
                     </div>
 
+
                     <div class="form-group" v-show="$gate.isAdmin()">
-                        <select name="type" v-model="form.user_id" id="type" class="form-control" :class="{
+                        <select name="user_id" v-model="form.user_id" id="type" class="form-control" :class="{
                         'is-valid': form.errors.has('user_id')}">
-                            <option value="">Select User Role</option>
-                            <option value="admin">Admin</option>
-                            <option value="teacher">Prof</option>
-                            <option value="student">Etudiant</option>
+                            <option v-for="prof in profs" :key="prof.id" v-bind:value="prof.id">
+                                {{ prof.name }}
+                            </option>
                         </select>
                         <has-error :form="form" field="user_id"></has-error>
                     </div>
@@ -93,16 +93,18 @@
             return{
                 editmode: false,
                 classes: {},
-                profs: {},
+                profs: [],
                 form: new Form({
                     id: '',
+                    user_id: '',
                     className: '',
                 })
             }
         },
         methods: {
             loadClasses(){
-                axios.get("api/class").then(({ data }) => (this.classes = data));
+                axios.get("api/class").then(({ data }) => (this.classes = data.classes));
+                axios.get("api/class").then(({ data }) => (this.profs = data.profs));
             },
 
             newModal(){
@@ -119,29 +121,106 @@
             },
 
             createClass(){
+                this.$Progress.start();
+
+                this.form.post('api/class').then(()=>{
+                    
+                    Fire.$emit('AfterCreate');
+
+                    $('#addNew').modal('hide');
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Module Ajouté avec succès'
+                    });
+
+                    this.$Progress.finish();
+
+                }).catch(()=>{
+                    
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Module non-ajouté'
+                    })
+
+                    this.form.reset();
+                });
 
             },
             
             updateClass(){
-
+                this.$Progress.start();
+                this.form.put('api/class/' + this.form.id)
+                .then(()=> {
+                    //success
+                    $('#addNew').modal('hide');
+                    Swal.fire(
+                        'Updated!',
+                        'Information has been updated.',
+                        'success'
+                    )
+                    this.$Progress.finish();
+                    Fire.$emit('AfterCreate');
+                })
+                .catch(()=> {
+                    this.$Progress.fail();
+                });
             },
 
-            deleteClass(){
-
+            deleteClass(id){
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    //send ajax request to the server
+                    if (result.value) {
+                        this.form.delete('api/class/' + id).then(()=>{
+                        Swal.fire(
+                            'Deleted!',
+                            'The User has been deleted.',
+                            'success'
+                        )
+                        Fire.$emit('AfterCreate');
+                        }).catch(()=> {
+                            Swal.fire("Failed!", "There was something wronge.", "warning");
+                        })
+                    }
+                })
             },
-            editClass(){
-                
-            }
-
-
 
         },
 
         created(){
+            //Searching listening
+            Fire.$on('searching', ()=>{
+                let query = this.$parent.search;
+                axios.get('api/findClass?q=' + query)
+                .then((data)=>{
+                    this.classes = data.data;
+                })
+                .catch(()=>{
+
+                })
+            });
+
             this.loadClasses();
+            // //setInterval(() => this.loadUsers(), 3000);
+            Fire.$on('AfterCreate', () => {
+                this.loadClasses();
+            });
+
         },
         mounted() {
             console.log('Component mounted.')
         }
     }
 </script>
+
+<style>
+
+</style>
