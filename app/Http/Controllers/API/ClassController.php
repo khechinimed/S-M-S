@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\ClassModel;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -27,7 +28,9 @@ class ClassController extends Controller
         //si l'utilisateur est un admin donc il peut voir tous les classes
         if(auth('api')->user()->type == 'admin'){
 
-            return ClassModel::latest()->paginate(20);
+            $classes = ClassModel::latest()->paginate(20);
+            $profs = User::all();
+            return ['classes'=>$classes, 'profs'=>$profs];
 
         }else{
             //l'utilisateur connecté actuellement
@@ -35,8 +38,8 @@ class ClassController extends Controller
 
             //SELECT CLASS WHERE USER.ID == ID(user)
             $classes = ClassModel::latest()->where('user_id', $user->id)->paginate(20);
-        
-            return $classes;
+            $profs = User::all();
+            return ['classes'=>$classes, 'profs'=>$profs];
         }
         
     }
@@ -49,7 +52,17 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
+        $user = auth('api')->user();
         //
+        $this->validate($request, [
+            'className' => 'required|string|unique|max: 191',
+            'user_id' => 'sometimes',
+        ]);
+
+        return ClassModel::create([
+            'className' => $request['className'],
+            'user_id' => $request['user_id']
+        ]);
     }
 
     /**
@@ -73,6 +86,15 @@ class ClassController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = ClassModel::findOrFail($id);
+
+        $this->validate($request, [
+            'className' => 'required|string|max: 191',
+            'user_id' => 'sometimes',
+        ]);
+
+        $user->update($request->all());
+        return ['message' => 'hadchi t updata'];
     }
 
     /**
@@ -84,5 +106,21 @@ class ClassController extends Controller
     public function destroy($id)
     {
         //
+        $class = ClassModel::findOrFail($id);
+
+        $class->delete();
+        return ['message' => 'User Deleted'];
+    }
+
+    public function search(){
+        if($search = \Request::get('q')){
+            $classes = ClassModel::where(function($query) use ($search){
+                $query->where('className','LIKE',"%$search%");
+            })->paginate(10);
+        }else{
+            $classes = ClassModel::latest()->paginate(7);
+        }
+
+        return $classes;
     }
 }
