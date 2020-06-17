@@ -26,6 +26,8 @@
     "dependencies": {
         "@babel/core": "^7.10.2",
         "admin-lte": "^3.0.5",
+        "animejs": "^3.2.0",
+        "compass-css-arrow": "0.0.1",
         "font-awesome": "^4.7.0",
         "laravel-vue-pagination": "^2.3.1",
         "moment": "^2.26.0",

@@ -204,7 +204,7 @@
                     this.classes = data.data;
                 })
                 .catch(()=>{
-
+                    
                 })
             });
 
