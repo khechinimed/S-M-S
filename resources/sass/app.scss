@@ -11,6 +11,9 @@ $fa-font-path: "../webfonts";
 //Admin LTE
 @import '~admin-lte/dist/css/adminlte.css';
 
+//LOGIN CSS FILE
+@import 'resources/sass/login.scss';
+
 //FontAwesome
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
