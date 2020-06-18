@@ -93,7 +93,6 @@
                             <option value="">Select User Role</option>
                             <option value="admin">Admin</option>
                             <option value="teacher">Prof</option>
-                            <option value="student">Etudiant</option>
                         </select>
                         <has-error :form="form" field="type"></has-error>
                     </div>
