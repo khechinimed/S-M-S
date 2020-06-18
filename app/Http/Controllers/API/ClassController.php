@@ -55,7 +55,7 @@ class ClassController extends Controller
         $user = auth('api')->user();
         //
         $this->validate($request, [
-            'className' => 'required|string|unique|max: 191',
+            'className' => 'required|string|max: 191',
             'user_id' => 'sometimes',
         ]);
 
@@ -118,7 +118,7 @@ class ClassController extends Controller
                 $query->where('className','LIKE',"%$search%");
             })->paginate(10);
         }else{
-            $classes = ClassModel::latest()->paginate(7);
+            $classes = ClassModel::latest()->paginate(10);
         }
 
         return $classes;
