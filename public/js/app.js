@@ -2233,8 +2233,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2558,9 +2556,68 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      editmode: false,
+      users: {},
+      form: new Form({
+        id: '',
+        name: '',
+        email: '',
+        password: '',
+        bio: '',
+        type: '',
+        photo: ''
+      })
+    };
+  },
+  methods: {
+    loadUsers: function loadUsers() {
+      var _this = this;
+
+      axios.get('api/user').then(function (_ref) {
+        var data = _ref.data;
+        return _this.users = data;
+      });
+    }
+  },
+  created: function created() {
+    this.loadUsers();
   }
 });
 
@@ -2575,7 +2632,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -66971,19 +67027,87 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "div",
+      { staticClass: "row mt-4" },
+      _vm._l(_vm.users.data, function(user) {
+        return _c("div", { key: user.id, staticClass: "col-md-3" }, [
+          _c("div", { staticClass: "card card-widget widget-user-2" }, [
+            _c(
+              "div",
+              {
+                staticClass: "widget-user-header bg-warning",
+                staticStyle: { height: "100px !important" }
+              },
+              [
+                _c("div", { staticClass: "widget-user-image" }, [
+                  _c("img", {
+                    staticClass: "img-circle elevation-2",
+                    attrs: {
+                      src: "/img/profile/" + user.photo,
+                      alt: "User Avatar"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("h3", { staticClass: "widget-user-username" }, [
+                  _vm._v(_vm._s(user.name))
+                ]),
+                _vm._v(" "),
+                _c("h5", { staticClass: "widget-user-desc" }, [
+                  _vm._v(_vm._s(_vm._f("upText")(user.type)))
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _vm._m(0, true)
+          ])
+        ])
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Teacher Component")
+    return _c("div", { staticClass: "card-footer p-0" }, [
+      _c("ul", { staticClass: "nav flex-column" }, [
+        _c("li", { staticClass: "nav-item" }, [
+          _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+            _vm._v("\n                  Projects "),
+            _c("span", { staticClass: "float-right badge bg-primary" }, [
+              _vm._v("31")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+            _vm._v("\n                  Tasks "),
+            _c("span", { staticClass: "float-right badge bg-info" }, [
+              _vm._v("5")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+            _vm._v("\n                  Completed Projects "),
+            _c("span", { staticClass: "float-right badge bg-success" }, [
+              _vm._v("12")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+            _vm._v("\n                  Followers "),
+            _c("span", { staticClass: "float-right badge bg-danger" }, [
+              _vm._v("842")
             ])
           ])
         ])
@@ -67365,10 +67489,6 @@ var render = function() {
                             _vm._v(" "),
                             _c("option", { attrs: { value: "teacher" } }, [
                               _vm._v("Prof")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "student" } }, [
-                              _vm._v("Etudiant")
                             ])
                           ]
                         ),
