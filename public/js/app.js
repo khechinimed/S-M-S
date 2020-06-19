@@ -2233,6 +2233,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2590,6 +2592,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2613,6 +2617,14 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('api/user').then(function (_ref) {
         var data = _ref.data;
         return _this.users = data;
+      });
+    },
+    getResults: function getResults() {
+      var _this2 = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('api/user?page=' + page).then(function (response) {
+        _this2.users = response.data;
       });
     }
   },
@@ -67032,13 +67044,13 @@ var render = function() {
       "div",
       { staticClass: "row mt-4" },
       _vm._l(_vm.users.data, function(user) {
-        return _c("div", { key: user.id, staticClass: "col-md-3" }, [
+        return _c("div", { key: user.id, staticClass: "col-md-4" }, [
           _c("div", { staticClass: "card card-widget widget-user-2" }, [
             _c(
               "div",
               {
                 staticClass: "widget-user-header bg-warning",
-                staticStyle: { height: "100px !important" }
+                staticStyle: { height: "120px !important" }
               },
               [
                 _c("div", { staticClass: "widget-user-image" }, [
@@ -67061,60 +67073,70 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _vm._m(0, true)
+            _c("div", { staticClass: "card-footer p-0" }, [
+              _c("ul", { staticClass: "nav flex-column" }, [
+                _c("li", { staticClass: "nav-item" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _vm._v("\n                  ID: "),
+                    _c(
+                      "span",
+                      { staticClass: "float-right badge bg-success" },
+                      [_vm._v(_vm._s(user.id))]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _vm._v("\n                  Email: "),
+                    _c("span", { staticClass: "float-right badge bg-info" }, [
+                      _vm._v(_vm._s(user.email))
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _vm._v("\n                  Students: "),
+                    _c("span", { staticClass: "float-right badge bg-danger" }, [
+                      _vm._v(_vm._s(user.classes_count))
+                    ])
+                  ])
+                ])
+              ])
+            ])
           ])
         ])
       }),
       0
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {},
+      [
+        _c(
+          "pagination",
+          {
+            attrs: { data: _vm.users },
+            on: { "pagination-change-page": _vm.getResults }
+          },
+          [
+            _c("span", { attrs: { slot: "prev-nav" }, slot: "prev-nav" }, [
+              _vm._v("< Previous")
+            ]),
+            _vm._v(" "),
+            _c("span", { attrs: { slot: "next-nav" }, slot: "next-nav" }, [
+              _vm._v("Next >")
+            ])
+          ]
+        )
+      ],
+      1
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer p-0" }, [
-      _c("ul", { staticClass: "nav flex-column" }, [
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-            _vm._v("\n                  Projects "),
-            _c("span", { staticClass: "float-right badge bg-primary" }, [
-              _vm._v("31")
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-            _vm._v("\n                  Tasks "),
-            _c("span", { staticClass: "float-right badge bg-info" }, [
-              _vm._v("5")
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-            _vm._v("\n                  Completed Projects "),
-            _c("span", { staticClass: "float-right badge bg-success" }, [
-              _vm._v("12")
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-            _vm._v("\n                  Followers "),
-            _c("span", { staticClass: "float-right badge bg-danger" }, [
-              _vm._v("842")
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

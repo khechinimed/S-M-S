@@ -27,7 +27,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        return User::latest()->paginate(7);
+        return User::withCount('classes')->latest()->paginate(6);
     }
 
     /**
