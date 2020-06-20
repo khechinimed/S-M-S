@@ -32,6 +32,7 @@
         "laravel-vue-pagination": "^2.3.1",
         "moment": "^2.26.0",
         "sweetalert2": "^9.14.3",
+        "typed.js": "^2.0.11",
         "vform": "^1.0.1",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.3.2"

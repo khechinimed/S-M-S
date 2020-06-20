@@ -16,3 +16,8 @@ mix.js('resources/js/app.js', 'public/js')
 
 mix.js('resources/js/login.js', 'public/js')
     .sass('resources/sass/login.scss', 'public/css');
+
+mix.js('resources/js/particle.js', 'public/js')
+    .sass('resources/sass/home.scss', 'public/css');
+
+mix.js('resources/js/typed.js', 'public/js');
