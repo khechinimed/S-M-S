@@ -1,0 +1,165 @@
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+//Font 
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
+//Particle js
+@import './particle.scss';
+
+//Colors
+$rose: #ff005e;
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+body{
+    background-color: #f8fafc;
+}
+
+header{
+    
+    color: whitesmoke;
+    background: linear-gradient(
+                rgba(0, 0, 0, 0.7), 
+                rgba(0, 0, 0, 0.7)
+                ),
+                url('/img/home-cover2.jpg') center center;
+    background-size: cover;
+    
+    height: 100vh;
+    
+    #particles-js {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+
+    nav{
+        a{
+            text-decoration: none;
+            color: whitesmoke;
+            font-family: 'Odibee Sans', cursive;
+            font-size: 26px;
+            position: absolute;
+        }
+
+        .active{
+            color: $rose;
+        }
+
+        a:hover{
+            color: $rose;
+        }
+
+        
+    }
+    
+    .main{
+        margin: 17% 5%;
+        a{
+            text-decoration: none;
+            position: absolute;
+            padding: 11px 38px;
+            border: 2px solid whitesmoke;
+            font-size: 27px;
+            color: whitesmoke;
+            margin-top: 8%;
+            border-radius: 21px;
+            font-family: 'Odibee Sans', cursive;
+        }
+        a:hover{
+            border-color: $rose;
+        }
+        .typed-cursor{
+            color: $rose;
+        }
+    }
+    .typed h1, h4{
+        font-family: 'MuseoModerno', cursive;
+    }
+    h1{
+        font-size: 60px;
+    }
+}
+
+
+//HOME PAGE LOADER
+.divLoad{
+    position: absolute;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    background-color: #2b2b2b;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .loader {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        position: relative;
+        border: 4px solid $rose;
+        
+        animation: loader 2s infinite ease;
+      }
+      
+      .loader-inner {
+        vertical-align: top;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background-color: $rose;
+        animation: loader-inner 2s infinite ease-in;
+      }
+      
+      @keyframes loader {
+        0% {
+          transform: rotate(0deg);
+        }
+        
+        25% {
+          transform: rotate(180deg);
+        }
+        
+        50% {
+          transform: rotate(180deg);
+        }
+        
+        75% {
+          transform: rotate(360deg);
+        }
+        
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      
+      @keyframes loader-inner {
+        0% {
+          height: 0%;
+        }
+        
+        25% {
+          height: 0%;
+        }
+        
+        50% {
+          height: 100%;
+        }
+        
+        75% {
+          height: 100%;
+        }
+        
+        100% {
+          height: 0%;
+        }
+      }
+}
