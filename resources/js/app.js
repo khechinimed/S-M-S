@@ -58,6 +58,7 @@ let routes = [
     { path: '/profile', component: require('./components/Profile.vue').default },
     { path: '/users', component: require('./components/Users.vue').default },
     { path: '/class', component: require('./components/Class.vue').default },
+    { path: '/notes', component: require('./components/Notes.vue').default },
     { path: '/students', component: require('./components/Student.vue').default },
     { path: '/teachers', component: require('./components/Teacher.vue').default },
     { path: '/developer', component: require('./components/Developer.vue').default },

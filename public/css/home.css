@@ -10961,6 +10961,7 @@ header nav a {
 
 header nav .active {
   color: #ff005e;
+  text-decoration: none;
 }
 
 header nav a:hover {
