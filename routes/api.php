@@ -22,6 +22,10 @@ Route::middleware('auth:api')->get('/class', function (Request $request) {
     return $request->class();
 });
 
+Route::middleware('auth:api')->get('/student', function (Request $request) {
+    return $request->student();
+});
+
 Route::apiResources(['user'=> 'API\UserController']);
 Route::get('profile', 'API\UserController@profile');
 Route::get('findUser', 'API\UserController@search');
@@ -29,3 +33,6 @@ Route::put('profile', 'API\UserController@updateProfile');
 
 Route::apiResources(['class'=> 'API\ClassController']);
 Route::get('findClass', 'API\ClassController@search');
+
+Route::apiResources(['student'=> 'API\StudentController']);
+Route::get('findStudent', 'API\StudentController@search');
