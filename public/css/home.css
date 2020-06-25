@@ -10932,6 +10932,7 @@ a.text-dark:focus {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -10999,6 +11000,53 @@ header h4 {
 
 header h1 {
   font-size: 60px;
+}
+
+#about {
+  padding-top: 10%;
+}
+
+#about .infos {
+  padding-top: 5%;
+}
+
+#about .infos h2 {
+  margin: 0 auto 26px auto;
+}
+
+#about .message-box h4,
+#about .message-box h2 {
+  font-family: "MuseoModerno", cursive;
+  margin-bottom: 1.5rem;
+}
+
+#about .message-box h4 {
+  color: #ff005e;
+}
+
+#about .vission-and-mission h2 {
+  color: #ff005e;
+}
+
+#about .nav {
+  margin-bottom: 3% !important;
+}
+
+#about .nav-pills > li {
+  width: 50%;
+  padding: 10px;
+  float: left;
+  margin: 0 !important;
+}
+
+#about .vission-and-mission .nav-pills > li > a.active {
+  border: none;
+  background: #484a4c;
+  color: #ffffff;
+}
+
+#about .vission-and-mission .nav-pills > li > a {
+  padding: 12px 15px;
 }
 
 .divLoad {

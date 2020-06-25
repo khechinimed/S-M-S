@@ -13,7 +13,7 @@ $rose: #ff005e;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    
+    scroll-behavior: smooth;
 }
 
 body{
@@ -85,6 +85,56 @@ header{
     h1{
         font-size: 60px;
     }
+}
+
+#about{
+  padding-top: 10%;
+
+  .infos{
+    padding-top: 5%;
+
+    h2{
+      margin: 0 auto 26px auto;
+    }
+  }
+
+  .message-box{
+    h4, h2{
+      font-family: 'MuseoModerno', cursive;
+      margin-bottom: 1.5rem;
+    }
+    h4{
+      color: $rose;
+    }
+
+  }
+
+  .vission-and-mission{
+    h2{
+      color: $rose;
+    }
+  }
+
+  .nav{
+    margin-bottom: 3% !important;
+  }
+
+  .nav-pills > li {
+      width: 50%;
+      padding: 10px;
+      float: left;
+      margin: 0 !important;
+  }
+  
+  .vission-and-mission .nav-pills > li > a.active {
+      border: none;
+      background: #484a4c;
+      color: #ffffff;
+  }
+  
+  .vission-and-mission .nav-pills > li > a{
+        padding: 12px 15px;
+  }
 }
 
 
