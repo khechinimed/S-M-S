@@ -11008,6 +11008,7 @@ header h1 {
 
 #about .infos {
   padding-top: 5%;
+  padding-bottom: 12%;
 }
 
 #about .infos h2 {
@@ -11047,6 +11048,25 @@ header h1 {
 
 #about .vission-and-mission .nav-pills > li > a {
   padding: 12px 15px;
+}
+
+footer {
+  width: 100%;
+  color: #f8fafc;
+  background: #484a4c;
+  text-align: center;
+  padding: 2%;
+}
+
+footer h6 {
+  margin: 0;
+  font-family: "Odibee Sans", cursive;
+  letter-spacing: 1px;
+  font-size: 24px;
+}
+
+footer h6 span {
+  color: #ff005e;
 }
 
 .divLoad {

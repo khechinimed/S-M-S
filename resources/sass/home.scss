@@ -92,6 +92,7 @@ header{
 
   .infos{
     padding-top: 5%;
+    padding-bottom: 12%;
 
     h2{
       margin: 0 auto 26px auto;
@@ -137,6 +138,24 @@ header{
   }
 }
 
+footer{
+  width: 100%;
+  color: #f8fafc;
+  background: #484a4c;
+  text-align: center;
+  padding: 2%;
+  
+  h6{
+    margin: 0;
+    font-family: 'Odibee Sans', cursive;
+    letter-spacing: 1px;
+    font-size: 24px;
+
+    span{
+      color: $rose;
+    }
+  }
+}
 
 //HOME PAGE LOADER
 .divLoad{

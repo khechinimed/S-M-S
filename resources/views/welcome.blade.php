@@ -65,7 +65,7 @@
 				<div class="col-md-12">
 					<ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
 						<li class="nav-item"><a class="nav-link active" href="#tab_a" data-toggle="tab">Our Mission</a></li>
-						<li class="nav-item"><a class="nav-link" href="#tab_b" data-toggle="tab">Our Vission</a></li>				
+						<li class="nav-item"><a class="nav-link" href="#tab_b" data-toggle="tab" style="color: #484a4c;">Our Vission</a></li>				
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane fade show active" id="tab_a">
@@ -84,6 +84,7 @@
 			</div>
         </div><!-- end container -->
     </div><!-- end section -->
+    <footer><h6>MIAGE &copy;2020<span> | </span>Méthodes Informatique appliqués à la gestion des entreprises </h6></footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="/js/particles.js"></script>
