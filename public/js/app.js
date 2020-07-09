@@ -2235,9 +2235,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      users: {},
+      students: {},
+      classes: {}
+    };
+  },
+  methods: {
+    loadUsers: function loadUsers() {
+      var _this = this;
+
+      axios.get('api/user').then(function (_ref) {
+        var data = _ref.data;
+        return _this.users = data;
+      });
+      axios.get('api/student').then(function (_ref2) {
+        var data = _ref2.data;
+        return _this.students = data;
+      });
+      axios.get("api/class").then(function (_ref3) {
+        var data = _ref3.data;
+        return _this.classes = data.classes;
+      });
+    }
+  },
+  created: function created() {
+    this.loadUsers();
   }
 });
 
@@ -66521,138 +66584,208 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("section", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-lg-3 col-6" }, [
+              _c("div", { staticClass: "small-box bg-info" }, [
+                _c("div", { staticClass: "inner" }, [
+                  _c("h3", [_vm._v(_vm._s(_vm.students.total))]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Nommbre des étudiants")])
+                ]),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2)
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-3 col-6" }, [
+              _c("div", { staticClass: "small-box bg-success" }, [
+                _c("div", { staticClass: "inner" }, [
+                  _c("h3", [_vm._v(_vm._s(_vm.classes.total))]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Nombres des modules")])
+                ]),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _vm._m(4)
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-3 col-6" }, [
+              _c("div", { staticClass: "small-box bg-warning" }, [
+                _c("div", { staticClass: "inner" }, [
+                  _c("h3", [_vm._v(_vm._s(_vm.users.total))]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Nombre d'utilisateurs")])
+                ]),
+                _vm._v(" "),
+                _vm._m(5),
+                _vm._v(" "),
+                _vm._m(6)
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(7)
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(8)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "content-header" }, [
-            _c("div", { staticClass: "container-fluid" }, [
-              _c("div", { staticClass: "row mb-2" }, [
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("h1", { staticClass: "m-0 text-dark" }, [
-                    _vm._v("Dashboard")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
-                    _c("li", { staticClass: "breadcrumb-item" }, [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "breadcrumb-item active" }, [
-                      _vm._v("Dashboard v1")
-                    ])
-                  ])
-                ])
+    return _c("div", { staticClass: "content-header" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row mb-2" }, [
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h1", { staticClass: "m-0 text-dark" }, [_vm._v("Dashboard")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item active" }, [
+                _vm._v("MIAGE")
               ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icon" }, [
+      _c("i", { staticClass: "ion ion-bag" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "small-box-footer", attrs: { href: "/students" } },
+      [
+        _vm._v("More info "),
+        _c("i", { staticClass: "fas fa-arrow-circle-right" })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icon" }, [
+      _c("i", { staticClass: "ion ion-stats-bars" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "small-box-footer", attrs: { href: "/class" } },
+      [
+        _vm._v("More info "),
+        _c("i", { staticClass: "fas fa-arrow-circle-right" })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icon" }, [
+      _c("i", { staticClass: "ion ion-person-add" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "small-box-footer", attrs: { href: "/users" } },
+      [
+        _vm._v("More info "),
+        _c("i", { staticClass: "fas fa-arrow-circle-right" })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-3 col-6" }, [
+      _c("div", { staticClass: "small-box bg-danger" }, [
+        _c("div", { staticClass: "inner" }, [
+          _c("h3", [_vm._v("36")]),
+          _vm._v(" "),
+          _c("p", [_vm._v("Nombre de visites")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "card card-default" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _c("h3", { staticClass: "card-title" }, [
+              _c("i", { staticClass: "fas fa-bullhorn" })
             ])
           ]),
           _vm._v(" "),
-          _c("section", { staticClass: "container-fluid" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-lg-3 col-6" }, [
-                _c("div", { staticClass: "small-box bg-info" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("h3", [_vm._v("150")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("New Orders")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "icon" }, [
-                    _c("i", { staticClass: "ion ion-bag" })
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "small-box-footer", attrs: { href: "#" } },
-                    [
-                      _vm._v("More info "),
-                      _c("i", { staticClass: "fas fa-arrow-circle-right" })
-                    ]
-                  )
-                ])
-              ]),
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "callout callout-danger" }, [
+              _c("h5", [_vm._v("I am a danger callout!")]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-lg-3 col-6" }, [
-                _c("div", { staticClass: "small-box bg-success" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("h3", [
-                      _vm._v("53"),
-                      _c("sup", { staticStyle: { "font-size": "20px" } }, [
-                        _vm._v("%")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Bounce Rate")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "icon" }, [
-                    _c("i", { staticClass: "ion ion-stats-bars" })
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "small-box-footer", attrs: { href: "#" } },
-                    [
-                      _vm._v("More info "),
-                      _c("i", { staticClass: "fas fa-arrow-circle-right" })
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-3 col-6" }, [
-                _c("div", { staticClass: "small-box bg-warning" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("h3", [_vm._v("44")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("User Registrations")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "icon" }, [
-                    _c("i", { staticClass: "ion ion-person-add" })
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "small-box-footer", attrs: { href: "#" } },
-                    [
-                      _vm._v("More info "),
-                      _c("i", { staticClass: "fas fa-arrow-circle-right" })
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-3 col-6" }, [
-                _c("div", { staticClass: "small-box bg-danger" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("h3", [_vm._v("65")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Unique Visitors")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "icon" }, [
-                    _c("i", { staticClass: "ion ion-pie-graph" })
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "small-box-footer", attrs: { href: "#" } },
-                    [
-                      _vm._v("More info "),
-                      _c("i", { staticClass: "fas fa-arrow-circle-right" })
-                    ]
-                  )
-                ])
+              _c("p", [
+                _vm._v(
+                  "There is a problem that we need to fix. A wonderful serenity has taken possession of my entire\n                soul,\n                like these sweet mornings of spring which I enjoy with my whole heart."
+                )
               ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "callout callout-info" }, [
+              _c("h5", [_vm._v("I am an info callout!")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Follow the steps to continue to payment.")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "callout callout-warning" }, [
+              _c("h5", [_vm._v("I am a warning callout!")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("This is a yellow callout.")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "callout callout-success" }, [
+              _c("h5", [_vm._v("I am a success callout!")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("This is a green callout.")])
             ])
           ])
         ])
