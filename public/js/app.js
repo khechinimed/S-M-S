@@ -2392,6 +2392,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -66911,10 +66938,52 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Notes Component")
+        _c("div", { staticClass: "col-md-12 pt-4" }, [
+          _c("h3", { staticClass: "card-title" }, [_vm._v("Notes")]),
+          _vm._v(" "),
+          _c("table", { staticClass: "table" }, [
+            _c("thead", { staticClass: "thead-dark" }, [
+              _c("tr", [
+                _c("th", [_vm._v("ID")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Prenom")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Nom")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Age")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Filière")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Note 1")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Note 2")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Note finale")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Registred At")])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tbody", [
+              _c("tr", [
+                _c("th", [_vm._v("ID")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Prenom")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Nom")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Age")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Filière")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Note 1")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Note 2")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Note finale")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Registred At")])
+              ])
             ])
           ])
         ])
