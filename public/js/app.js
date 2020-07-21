@@ -2419,6 +2419,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -66966,23 +66977,43 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("tbody", [
               _c("tr", [
-                _c("th", [_vm._v("ID")]),
+                _c("th", [_vm._v("01")]),
                 _vm._v(" "),
-                _c("th", [_vm._v("Prenom")]),
+                _c("th", [_vm._v("MOHAMED")]),
                 _vm._v(" "),
-                _c("th", [_vm._v("Nom")]),
+                _c("th", [_vm._v("KHECHINI")]),
                 _vm._v(" "),
-                _c("th", [_vm._v("Age")]),
+                _c("th", [_vm._v("21")]),
                 _vm._v(" "),
-                _c("th", [_vm._v("Filière")]),
+                _c("th", [_vm._v("MIAGE")]),
                 _vm._v(" "),
-                _c("th", [_vm._v("Note 1")]),
+                _c("th", [_vm._v("16.75")]),
                 _vm._v(" "),
-                _c("th", [_vm._v("Note 2")]),
+                _c("th", [_vm._v("18")]),
                 _vm._v(" "),
-                _c("th", [_vm._v("Note finale")]),
+                _c("th", [_vm._v("17.37")]),
                 _vm._v(" "),
-                _c("th", [_vm._v("Registred At")])
+                _c("th", [_vm._v("21 - 07 - 2020")])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("16")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("AZIZ")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("WALOU")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("20")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("MIAGE")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("12")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("10")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("11")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("21 - 07 - 2020")])
               ])
             ])
           ])
